@@ -24,6 +24,28 @@ func addBookToArray(book *Book, bookArray []*Book) []*Book {
 	return bookArray
 }
 
+func removeBookFromArray(book *Book, bookArray []*Book) []*Book {
+	for i, b := range bookArray {
+		if b == book {
+			bookArray = append(bookArray[:i], bookArray[i+1:]...)
+			break
+		}
+	}
+	return bookArray
+}
+
+func increasePrice(book *Book, price float64) {
+	book.price += price
+}
+
+func decreasePrice(book *Book, price float64) {
+	book.price -= price
+}
+
+func isbnValid(book *Book) bool {
+	return book.isbn < 1000000
+}
+
 func printBookInfo(book *Book) {
 	println("Book author: ", book.author)
 	println("Pages: ", book.pageNumber)
@@ -37,5 +59,10 @@ func printBookInfo(book *Book) {
 
 func main() {
 	harryPotter := NewBook("J.K. Rowling", 500, 20, 1000000, 19.99, 1997, 9788700631625)
+	println("before price change")
+	printBookInfo(harryPotter)
+	println("After price change")
+	println()
+	increasePrice(harryPotter, 12.99)
 	printBookInfo(harryPotter)
 }
