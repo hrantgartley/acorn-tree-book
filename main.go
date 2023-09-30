@@ -43,7 +43,7 @@ func decreasePrice(book *Book, price float64) {
 }
 
 func isbnValid(book *Book) bool {
-	return book.isbn < 1000000
+	return book.isbn > 1000000000
 }
 
 func printBookInfo(book *Book) {
