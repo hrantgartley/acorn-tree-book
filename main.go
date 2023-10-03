@@ -5,17 +5,18 @@ import (
 )
 
 type Book struct {
-	author     string
-	pageNumber int
-	chapter    int
-	numCopies  int
-	price      float64
-	pubYear    int
-	isbn       int
+	author        string
+	pageNumber    int
+	chapter       int
+	numCopies     int
+	price         float64
+	pubYear       int
+	isbn          int
+	goodCondition bool
 }
 
-func NewBook(author string, pageNumber int, chapter int, numCopies int, price float64, pubYear int, isbn int) *Book {
-	temp := Book{author, pageNumber, chapter, numCopies, price, pubYear, isbn}
+func NewBook(author string, pageNumber int, chapter int, numCopies int, price float64, pubYear int, isbn int, cond bool) *Book {
+	temp := Book{author, pageNumber, chapter, numCopies, price, pubYear, isbn, cond}
 	return &temp
 }
 
@@ -58,7 +59,7 @@ func printBookInfo(book *Book) {
 }
 
 func main() {
-	harryPotter := NewBook("J.K. Rowling", 500, 20, 1000000, 19.99, 1997, 9788700631625)
+	harryPotter := NewBook("J.K. Rowling", 500, 20, 1000000, 19.99, 1997, 9788700631625, true)
 	println("before price change")
 	printBookInfo(harryPotter)
 	println("After price change")
