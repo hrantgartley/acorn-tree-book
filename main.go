@@ -5,7 +5,7 @@ import (
 )
 
 type Book struct {
-	author        string
+	authorName    string
 	pageNumber    int
 	chapter       int
 	numCopies     int
@@ -13,6 +13,28 @@ type Book struct {
 	pubYear       int
 	isbn          int
 	goodCondition bool
+}
+
+type Author struct {
+	fullName        string
+	notableSeries   string
+	age             int
+	totalSold       int
+	numPublications int
+}
+
+func NewAuthor(fName string, notable string, aAge int, sold int, num int) *Author {
+	temp := Author{fName, notable, aAge, sold, num}
+	return &temp
+}
+
+func printAuthor(author *Author) {
+	fmt.Println("Full Name: ", author.fullName)
+	fmt.Println("Notable Series: ", author.notableSeries)
+	fmt.Println("Age: ", author.age)
+	fmt.Println("Total Copies Sold: ", author.totalSold)
+	fmt.Println("Number of Series Published: ", author.numPublications)
+
 }
 
 func NewBook(author string, pageNumber int, chapter int, numCopies int, price float64, pubYear int, isbn int, cond bool) *Book {
@@ -48,7 +70,7 @@ func isbnValid(book *Book) bool {
 }
 
 func printBookInfo(book *Book) {
-	println("Book author: ", book.author)
+	println("Book author: ", book.authorName)
 	println("Pages: ", book.pageNumber)
 	println("Chapters: ", book.chapter)
 	println("Number of copies: ", book.numCopies)
@@ -58,7 +80,19 @@ func printBookInfo(book *Book) {
 	println("ISBN: ", book.isbn)
 }
 
+func manage_sell_price(book *Book) {
+	if book.goodCondition {
+		increasePrice(book, 2)
+	} else if !book.goodCondition {
+		decreasePrice(book, 5)
+	} else {
+		fmt.Println("Invalid condition")
+	}
+}
+
 func main() {
+	JKRowling := NewAuthor("JKRowling", "Harry Potter", 52, 100000, 8)
+	printAuthor(JKRowling)
 	harryPotter := NewBook("J.K. Rowling", 500, 20, 1000000, 19.99, 1997, 9788700631625, true)
 	println("before price change")
 	printBookInfo(harryPotter)
