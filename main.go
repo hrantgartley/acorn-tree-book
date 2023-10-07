@@ -28,13 +28,26 @@ func NewAuthor(fName string, notable string, aAge int, sold int, num int) *Autho
 	return &temp
 }
 
+func changeName(name string, author *Author) *Author {
+	author.fullName = name
+	return author
+}
 func printAuthor(author *Author) {
 	fmt.Println("Full Name: ", author.fullName)
 	fmt.Println("Notable Series: ", author.notableSeries)
 	fmt.Println("Age: ", author.age)
 	fmt.Println("Total Copies Sold: ", author.totalSold)
 	fmt.Println("Number of Series Published: ", author.numPublications)
+}
 
+func returnHighestAge(book []*Book) *Book {
+	var largest = book[0]
+	for i := 1; i < len(book); i++ {
+		if book[i].pubYear > largest.pubYear {
+			largest = book[i]
+		}
+	}
+	return largest
 }
 
 func NewBook(author string, pageNumber int, chapter int, numCopies int, price float64, pubYear int, isbn int, cond bool) *Book {
@@ -100,4 +113,5 @@ func main() {
 	println()
 	increasePrice(harryPotter, 12.99)
 	printBookInfo(harryPotter)
+	fmt.Println("End of main method")
 }
